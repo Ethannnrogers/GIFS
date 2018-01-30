@@ -20,34 +20,28 @@ var gifs = [];
 
 function generateButtons () {
     for(var i = 0; i < singers.length; i++) {
-        buttonHTML += "<button type='button' class='btn btn-secondary button' data-input='" + singers[i] + "'>" + singers[i] + "</button>";
-        $("#button-input").html(buttonHTML);
+      buildButton(singers[i]);  
     }
 }
 
+function buildButton (singerName) {
+    buttonHTML += "<button type='button' class='btn btn-secondary button' data-input='" + singerName + "'>" + singerName + "</button>";
+    $("#button-input").html(buttonHTML);
+
+}
 generateButtons();
+
 
     //Adds a button
     $("#add-button").on("click", function (event) {
         event.preventDefault();
           searchTerm = $("#input").val();
-          newButton = "<button type='button' class='btn btn-secondary button' data-input='" + searchTerm + "'>" + searchTerm + "</button>"
-         // console.log(searchTerm);
-         // console.log(newButton);
-           $("#button-input").append(newButton);
-            singers.push(searchTerm); //adds the input tot he singers array
-            console.log(singers);
-
-          // make the enter key run the function for adding a button
-          $("#input").keypress(function(e){
-            if(e.which == 13){ 
-                $('#add-button').runAddButton(); // why is this not working? How do I make that a function to run????
-            }
-      })
+          buildButton(searchTerm);
+             
     }); 
 
     // when you click the button, it shows the gifs for that term
-  $(".button").on("click", function () {
+  $(document).on("click", ".button", function () { //event deligation
     $("#gif-input").empty();
     console.log(this);
     dataToSearch = $(this).attr('data-input');
