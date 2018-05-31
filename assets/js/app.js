@@ -52,6 +52,7 @@ generateButtons();
         method: 'GET'
       }).done(function(response) {
         console.log(response);
+        
         console.log(response.data);
         for (var i = 0; i < response.data.length; i++) {
             console.log(response.data[i]);
